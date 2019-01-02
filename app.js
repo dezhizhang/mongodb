@@ -148,7 +148,7 @@ nconf.add('app', {type: 'file', file: config_app});
 
 // set app defaults
 var app_host = process.env.HOST || 'localhost';
-var app_port = process.env.PORT || 1234;
+var app_port = process.env.PORT || 8084;
 
 // get the app configs and override if present
 if(nconf.stores.app.get('app:host') !== undefined){
@@ -284,7 +284,7 @@ async.forEachOf(connection_list, function (value, key, callback){
         if(err) console.error(err.message);
         // lift the app
         app.listen(app_port, app_host, function (){
-            console.log('adminMongo listening on host: http://' + app_host + ':' + app_port + app_context);
+            console.log('mongodb listening on host: http://' + app_host + ':' + app_port + app_context);
 
             // used for electron to know when express app has started
             app.emit('startedAdminMongo');
